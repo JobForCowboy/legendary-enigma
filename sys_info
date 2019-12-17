@@ -3,6 +3,29 @@
 TITLE="Ricardo Milos For $HOSTNAME"
 CURRENT_TIME=$(date +"%x %r %Z")
 TIME_STAMP="Gerated $CURRENT_TIME, by $USER"
+report_uptime () {
+		cat <<- _EOF_
+				<H2>System Uptime</H2>
+				<PRE>$(uptime)</PRE>
+				_EOF_
+		return
+}
+
+report_disc_space () {
+		cat <<- _EOF_
+				<H2>Disk Space</H2>
+				<PRE>$(df -h)</PRE>
+				_EOF_
+		return
+}
+
+report_home_space () {
+		cat <<- _EOF_
+				<H2>Disk Home Space</H2>
+				<PRE>$(du -hs /home/*)</PRE>
+				_EOF_
+		return
+}
 
 cat << _EOF_
 <HTML>
@@ -12,6 +35,9 @@ cat << _EOF_
 		<BODY>
 			<H1>$TITLE</H1>
 			<P>$TIME_STAMP</P>
+			$(report_uptime)
+			$(report_disc_space)
+			$(report_home_space)
 		</BODY>
-</HTML>"
+</HTML>
 _EOF_
