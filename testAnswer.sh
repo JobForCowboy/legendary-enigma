@@ -1,6 +1,6 @@
 #!/bin/bash
 # test-string: проверка значения строки
-ANSWER=maybe
+ANSWER=
 if [ -z "$ANSWER" ]; then
 echo "There is no answer." >&2
 exit 1
